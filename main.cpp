@@ -7,16 +7,18 @@
 using json = nlohmann::json;
 using namespace std;
 
+string loginAtual;
 
 int Menu()
 {
-	cout<<"===================\n"
-		<<" CADASTRO E LOGIN\n"
-		<<"===================\n"
-		<< "1. CADASTRO\n"
-		<< "2. LOGIN\n"
-		<< "3. GERENCIAR\n"
-		<< "4. SAIR"<<endl;
+	cout<<"======================\n"
+		<<" FARMACIA GERENCIATOR\n"
+		<<"======================\n"
+		<< "1 - CADASTRO\n"
+		<< "2 - LOGIN\n"
+		<< "3 - GERENCIAR USUARIOS\n"
+		<< "4 - GERENCIAR PRODUTOS\n"
+		<< "5 - SAIR"<<endl;
 	int choice;
 	cin>> choice;
 	return choice;
@@ -39,14 +41,18 @@ int main() {
 				break;
 			}
 			case 3: {
-				cout << "Gerenciar selecionado." << endl;
+				cout << "Gerenciador de usuarios" << endl;
 				cout << Sessao::GetLogado() << endl;
 				break;
 			}
 			case 4:
-				
-				cout << "Saindo..." << endl;
+				cout<<"Gerenciador de produtos"<<endl;
+				cout<<Sessao::
 				break;	
+
+			case 5:
+				cout << "Saindo..." << endl;
+				break;
 			default:
 				cout << "Opção inválida." << endl;
 				break;

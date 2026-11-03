@@ -8,47 +8,57 @@ using json = nlohmann::json;
 
 class Sessao {
 	protected:
-        string nome;
-		string loginUsuario;//salvar o login atual para saber quem está logado
-        string senha; // criptografar com hash
+        static string nome;
+		static string loginUsuario;//salvar o login atual para saber quem está logado
+        static string senha; // criptografar com hash
 		inline static bool logado = false;
         //----------------------------------
-		bool verificarCadastro(string _nome,string _login,string _senha);
-        bool verificarLogin(string _login,string _senha);
         json carregarUsuarios();
 
     public:
 		Sessao() = default;
-		static bool GetLogado() {
-            return logado;
-        }
+		static json GetLogado();
 };
 
 class Cadastro : public Sessao {
     public:
         void cadastro();
+		bool verificarCadastro(string _nome,string _login,string _senha);
         ~Cadastro(){};
 };
 
 class Login : public Sessao {
     public:
         void login();
+		bool verificarLogin(string _login,string _senha);
         ~Login(){};
 };
+
+json Sessao::GetLogado()
+{
+	json info;
+	if(!logado)
+	{
+		info["log"] = logado;
+	}
+	info["nome"] = nome;
+	info["login"] = loginUsuario;
+    info["log"] = logado;
+	return info;
+}
 
 json Sessao::carregarUsuarios()
 {
     json usuarios = json::array();
     ifstream arquivo("usuarios.json");
     if (arquivo.is_open()) {
-    	try {
-    		arquivo >> usuarios;
-    		if (!usuarios.is_array()) {
-    			usuarios = json::array();
-    		}
-    	} catch (const json::parse_error&) {
+    	
+    	arquivo >> usuarios;
+		if (!usuarios.is_array())
+		{
     		usuarios = json::array();
     	}
+    	
     	arquivo.close();
     }
     ofstream arquivoSaida("usuarios.json");
@@ -59,7 +69,7 @@ json Sessao::carregarUsuarios()
     return usuarios;
 }
 
-bool Sessao::verificarCadastro(string _nome,string _login,string _senha)
+bool Cadastro::verificarCadastro(string _nome,string _login,string _senha)
 {
     json usuarios = carregarUsuarios();
     for(const auto& usuario : usuarios) {
@@ -82,7 +92,7 @@ bool Sessao::verificarCadastro(string _nome,string _login,string _senha)
     return true;
 }
 
-bool Sessao::verificarLogin(string _login,string _senha)
+bool Login::verificarLogin(string _login,string _senha)
 {
     json usuarios = carregarUsuarios();
     for(const auto& usuario : usuarios) {
@@ -106,7 +116,7 @@ void Cadastro::cadastro()
 
 	cout<< "Cadastro selecionado." << endl;
 	cout<<"Digite seu nome: ";
-	cin>> nome;
+	getline(cin, nome);
 	cout<<"Digite seu login: ";
 	cin>> loginUsuario;
 	cout<<"Digite sua senha: ";
