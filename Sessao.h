@@ -63,15 +63,18 @@ bool Sessao::verificarCadastro(string _nome,string _login,string _senha)
 {
     json usuarios = carregarUsuarios();
     for(const auto& usuario : usuarios) {
-    	if (usuario.contains("nome") && usuario["nome"] == _nome) {
+    	if (usuario.contains("nome") && usuario["nome"] == _nome)
+		{
     		cout << "nome já cadastrado." << endl;
     		return false;
     	}
-    	if (usuario.contains("login") && usuario["login"] == _login) {
+    	if (usuario.contains("login") && usuario["login"] == _login)
+		{
     		cout << "login já cadastrado." << endl;
     		return false;
     	}
-    	if (usuario.contains("senha") && usuario["senha"] == _senha) {
+    	if (usuario.contains("senha") && usuario["senha"] == _senha)
+		{
     		cout << "senha já cadastrada." << endl;
     		return false;
     	}
@@ -84,9 +87,11 @@ bool Sessao::verificarLogin(string _login,string _senha)
     json usuarios = carregarUsuarios();
     for(const auto& usuario : usuarios) {
     	if (usuario.contains("login") && usuario["login"] == _login) {
-    		if (usuario.contains("senha") && usuario["senha"] == _senha) {
+    		if (usuario.contains("senha") && usuario["senha"] == _senha)
+			{
     			return true;
-    		} else {
+    		}else
+			{
     			cout << "Senha incorreta." << endl;
     			return false;
     		}
