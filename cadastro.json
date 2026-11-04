@@ -1,0 +1,20 @@
+[
+    {
+        "ID": 1,
+        "nome": "joao",
+        "senha": "jo31",
+        "usuario": "jbrum"
+    },
+    {
+        "ID": 2,
+        "nome": "mari",
+        "senha": "mari02",
+        "usuario": "marimari"
+    },
+    {
+        "ID": 3,
+        "nome": "usuario teste",
+        "senha": "user",
+        "usuario": "usertest"
+    }
+]

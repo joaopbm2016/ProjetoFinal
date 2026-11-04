@@ -7,7 +7,7 @@
 using json = nlohmann::json;
 using namespace std;
 
-string loginAtual;
+string usuarioAtual;
 
 int Menu()
 {
@@ -25,9 +25,9 @@ int Menu()
 }
 
 int main() {
-	Sessao usuario;
+	//Sessao usuario;
 	int choice=0;
-	while (choice!=4) {
+	while (choice!=5) {
 		choice = Menu();
 		switch (choice) {
 			case 1: {
@@ -42,12 +42,12 @@ int main() {
 			}
 			case 3: {
 				cout << "Gerenciador de usuarios" << endl;
-				cout << Sessao::GetLogado() << endl;
+				cout << Sessao::GetLogin() << endl;
 				break;
 			}
 			case 4:
 				cout<<"Gerenciador de produtos"<<endl;
-				cout<<Sessao::
+				//cout<<Sessao::
 				break;	
 
 			case 5:
