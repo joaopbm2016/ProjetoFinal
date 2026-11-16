@@ -1,0 +1,13 @@
+# Arquivos gerados pela compilacao C++
+*.o
+*.d
+*.out
+
+# Executaveis gerados localmente
+main
+prog
+output/
+
+# Arquivos temporarios do editor e do sistema
+*~
+.DS_Store
