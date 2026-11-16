@@ -60,6 +60,8 @@ class ProductsManager : public Sessao {
 	public:
 		json carregarProdutos();
 		void getProducts();
-		void cadastrarProdutos();
+		void cadastrarProduto();
+		bool verificarProdutCadastro(string Nome,int ID);
+		string showTypes();
 
 };

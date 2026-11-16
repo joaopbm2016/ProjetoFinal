@@ -46,8 +46,10 @@ void userManager()
 				cout<<"========================="<<endl;
 				break;
 			case 4:
-				cout<<"VOLTANDO PARA MENU PRINCIPAL...\n"<<endl;
+				cout<<"VOLTANDO PARA MENU PRINCIPAL..."<<endl;
+				break;
 			default:
+				cout<<"OPÇÃO INVALIDA!"<<endl;
 				break;
 		}
 	}while(choice!=4);
@@ -55,7 +57,59 @@ void userManager()
 
 void productManager()
 {
-	
+	if(!Sessao::getLogado())
+	{
+		cout<<"VOCÊ NÃO ESTA LOGADO!\n"
+			<<"VOLTANDO PARA MENU..."<<endl;
+		return;
+	}
+
+	ProductsManager produtmanager;
+
+	int choice;
+	do{
+		cout<<"=========================\n"
+			<<" GERENCIADOR DE PRODUTOS\n"
+			<<"=========================\n"
+			<< "1 - Mostrar lista de produtos\n"
+			<< "2 - Pesquisar produtos por tipo\n"
+			<< "3 - Cadastrar novo produto\n"
+			<< "4 - Cadastrar novo tipo\n"
+			<< "5 - Deletar produto\n"
+			<< "6 - Deletar tipo\n"
+			<< "7 - Voltar"<<endl;
+		cin>> choice;
+		switch (choice)
+		{
+			case 1:
+				cout<<"========================="<<endl;
+				produtmanager.getProducts();
+				break;
+			case 2:
+				cout<<"========================="<<endl;
+				cout<<"pesquisa por tipo"<<endl;
+				break;
+			case 3:
+				produtmanager.cadastrarProduto();
+				cout<<"========================="<<endl;
+				break;
+			case 4:
+				cout<<"cadastrar novo tipo de produto"<<endl;
+				break;
+			case 5:
+				cout<<"Deletar produto"<<endl;
+				break;
+			case 6:
+				cout<<"Deletar tipo"<<endl;
+				break;
+			case 7:
+				cout<<"VOLTANDO PARA MENU PRINCIPAL...\n"<<endl;
+				break;
+			default:
+				cout<<"OPÇÃO INVALIDA!"<<endl;
+				break;
+		}
+	}while(choice!=7);
 }
 
 int Menu()
@@ -91,20 +145,21 @@ int main() {
 				login.login();
 				break;
 			}
-			case 3: {				
+			case 3: {
+				cout<<"========================="<<endl;				
 				userManager();
 				break;
 			}
 			case 4:
-				cout<<"Gerenciador de produtos"<<endl;
-				
+				cout<<"========================="<<endl;
+				productManager();
 				break;	
 
 			case 5:
 				cout << "Saindo..." << endl;
 				break;
 			default:
-				cout << "Opção inválida." << endl;
+				cout<<"OPÇÃO INVALIDA!"<<endl;
 				break;
 		}
 	}
