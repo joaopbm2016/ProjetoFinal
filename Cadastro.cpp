@@ -9,27 +9,24 @@
 using namespace std;
 using json = nlohmann::json;
 
-bool Cadastro::verificarCadastro(string _nome,string _usuario, int _ID)
+int Cadastro::verificarCadastro(string _nome,string _usuario, int _ID)
 {
     json usuarios = carregarUsuarios();
     for(const auto& usuario : usuarios) {
     	if (usuario.contains("nome") && usuario["nome"] == _nome)
 		{
-    		cout << "nome já cadastrado." << endl;
-    		return false;
+    		return 1;
     	}
     	if (usuario.contains("usuario") && usuario["usuario"] == _usuario)
 		{
-    		cout << "login já cadastrado." << endl;
-    		return false;
+    		return 2;
     	}
 		if (usuario.contains("ID") && usuario["ID"] == _ID)
 		{
-    		cout << "ID já Existente." << endl;
-    		return false;
+    		return 3;
     	}
     }
-    return true;
+    return 0;
 }
 
 void Cadastro::cadastro()
@@ -44,10 +41,30 @@ void Cadastro::cadastro()
 	cout<<"Digite sua senha: ";
 	cin>> senhaCadastro;
 	senhaCadastro=cript(senhaCadastro,1); 
-	IDCadastro = totalIDs()+1;
-	if (verificarCadastro(nomeCadastro, usuarioCadastro, IDCadastro))
-	{
-		json usuarios = carregarUsuarios();
+	IDCadastro = maiorID()+1;
+	int erro = verificarCadastro(nomeCadastro, usuarioCadastro, IDCadastro);
+	switch(erro){
+		case 0:
+			pushCadastro();
+			break;
+		case 1:
+			cout << "nome já cadastrado." << endl;
+			break;
+		case 2:
+			cout << "login já cadastrado." << endl;
+			break;
+		case 3:
+			cout << "ID já Existente." << endl;
+			break;
+		default:
+			cout<<"erro não identificado!"<<endl;
+			break;
+	}
+}	
+
+void Cadastro::pushCadastro()
+{
+	json usuarios = carregarUsuarios();
 
 		usuarios.push_back({
 			{"nome", nomeCadastro},
@@ -55,13 +72,12 @@ void Cadastro::cadastro()
 			{"senha", senhaCadastro},
 			{"ID", IDCadastro}
 		});
+		cout<<usuarios.dump(4)<<endl;
 		ofstream arquivo("cadastro.json");
 		if (!arquivo.is_open()) {
 			cout << "Erro ao abrir o arquivo." << endl;
 			return;
 		}
-		arquivo << usuarios.dump(4);
 		arquivo.close();
 		cout << "Cadastro realizado com sucesso!" << endl;
-	}
 }

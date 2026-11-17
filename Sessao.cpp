@@ -45,13 +45,21 @@ void Sessao::setID(int IDSet)
 	ID = IDSet;
 }
 
-int Sessao::totalIDs()//verificar se o ID já esta uso
+int Sessao::maiorID()//verificar se o ID já esta uso
 {
 	json dados = carregarUsuarios();
 
-	size_t IDs = dados.size();
+	size_t maiorID;
 
-	return IDs;
+	for (auto i : dados)
+	{
+		if(maiorID<i["ID"])
+		{
+			maiorID=i["ID"];
+		}
+	}
+
+	return maiorID;
 }
 
 json Sessao::carregarUsuarios()

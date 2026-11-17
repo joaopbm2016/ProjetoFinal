@@ -25,7 +25,7 @@ class Sessao {
 		static void getLogin();
 		static bool getLogado();
 		static string cript(string IN,int codecod);
-		int totalIDs();		
+		int maiorID();		
 };
 
 class Cadastro : public Sessao {
@@ -34,7 +34,8 @@ class Cadastro : public Sessao {
 		int IDCadastro;
     public:
         void cadastro();
-		bool verificarCadastro(string _nome,string _usuario, int _ID);
+		int verificarCadastro(string _nome,string _usuario, int _ID);
+		void pushCadastro();
         ~Cadastro(){};
 };
 
