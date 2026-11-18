@@ -24,7 +24,7 @@ bool Login::verificarLogin(string _usuario,string _senha)
     		}
     	}
     }
-    cout << "Login não encontrado." << endl;
+    cout << "usuario não encontrado." << endl;
     return false;
 }
 

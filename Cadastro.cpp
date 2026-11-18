@@ -72,12 +72,12 @@ void Cadastro::pushCadastro()
 			{"senha", senhaCadastro},
 			{"ID", IDCadastro}
 		});
-		cout<<usuarios.dump(4)<<endl;
 		ofstream arquivo("cadastro.json");
 		if (!arquivo.is_open()) {
 			cout << "Erro ao abrir o arquivo." << endl;
 			return;
 		}
+		arquivo << usuarios.dump(4);
 		arquivo.close();
 		cout << "Cadastro realizado com sucesso!" << endl;
 }

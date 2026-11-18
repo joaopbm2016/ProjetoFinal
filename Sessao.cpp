@@ -49,13 +49,14 @@ int Sessao::maiorID()//verificar se o ID já esta uso
 {
 	json dados = carregarUsuarios();
 
-	size_t maiorID;
+	int maiorID = 0;
 
 	for (auto i : dados)
 	{
-		if(maiorID<i["ID"])
+		if (i.contains("ID") && i["ID"].is_number_integer()
+			&& maiorID < i["ID"].get<int>())
 		{
-			maiorID=i["ID"];
+			maiorID = i["ID"].get<int>();
 		}
 	}
 
@@ -67,8 +68,11 @@ json Sessao::carregarUsuarios()
     json usuarios = json::array();
 	ifstream arquivo("cadastro.json");
     if (arquivo.is_open()) {
-    	
-    	arquivo >> usuarios;
+    	try {
+    		arquivo >> usuarios;
+    	} catch (const json::parse_error&) {
+    		usuarios = json::array();
+    	}
 		if (!usuarios.is_array())
 		{
     		usuarios = json::array();
