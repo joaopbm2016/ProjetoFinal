@@ -72,12 +72,9 @@ void productManager()
 			<<" GERENCIADOR DE PRODUTOS\n"
 			<<"=========================\n"
 			<< "1 - Mostrar lista de produtos\n"
-			<< "2 - Pesquisar produtos por tipo\n"
-			<< "3 - Cadastrar novo produto\n"
-			<< "4 - Cadastrar novo tipo\n"
-			<< "5 - Deletar produto\n"
-			<< "6 - Deletar tipo\n"
-			<< "7 - Voltar"<<endl;
+			<< "2 - Cadastrar novo produto\n"
+			<< "3 - Deletar produto\n"
+			<< "4 - Voltar"<<endl;
 		cin>> choice;
 		switch (choice)
 		{
@@ -86,30 +83,20 @@ void productManager()
 				produtmanager.getProducts();
 				break;
 			case 2:
+				produtmanager.cadastrarProduto();//criar detecção de id automatico
 				cout<<"========================="<<endl;
-				cout<<"pesquisa por tipo"<<endl;
 				break;
 			case 3:
-				produtmanager.cadastrarProduto();
-				cout<<"========================="<<endl;
+				cout<<"Deletar produto"<<endl;// criar deletar
 				break;
 			case 4:
-				cout<<"cadastrar novo tipo de produto"<<endl;
-				break;
-			case 5:
-				cout<<"Deletar produto"<<endl;
-				break;
-			case 6:
-				cout<<"Deletar tipo"<<endl;
-				break;
-			case 7:
 				cout<<"VOLTANDO PARA MENU PRINCIPAL...\n"<<endl;
 				break;
 			default:
 				cout<<"OPÇÃO INVALIDA!"<<endl;
 				break;
 		}
-	}while(choice!=7);
+	}while(choice!=4);
 }
 
 int Menu()

@@ -27,6 +27,11 @@ void Sessao::getLogin()
 		<<"logado: "<<getLogado()<<endl;
 }
 
+int Sessao::getID()
+{
+	return ID;
+}
+
 void Sessao::setNome(string nomeSet)
 {
 	nome = nomeSet;

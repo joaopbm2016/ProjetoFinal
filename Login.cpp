@@ -70,11 +70,11 @@ void Login::login()
 	senhaLogin= cript(senhaLogin,1);
 	if (verificarLogin(usuarioLogin, senhaLogin)) 
     {
-        cout << "Login bem-sucedido!" << endl;
+        cout << "\nLOGIN BEM SUCEDIDO!\n" << endl;
 		loginRegister(usuarioLogin);
         Sessao::logado = true;
     } else {
-        cout << "Falha no login." << endl;
+        cout << "\nFALHA DE LOGIN" << endl;
         Sessao::logado = false;
     }
 }

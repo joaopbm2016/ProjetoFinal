@@ -23,9 +23,14 @@ void UserManager::getUsers()
 
 void UserManager::deleteUser()
 {
-    cout<<"qual usuario deletar?\n*escreva o ID*"<<endl;
     int deleteID=0;
+    cout<<"qual usuario deletar?\n*escreva o ID*"<<endl;
     cin>>deleteID;
+    if (deleteID==getID())
+    {
+        cout<<"\nVOCÊ NÃO PODE DELETAR UM USUARIO QUE ESTA LOGADO!\n"<<endl;
+        return;
+    }
     json newusers = carregarUsuarios();
     if(!newusers.is_array())
     {

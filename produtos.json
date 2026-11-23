@@ -1,33 +1,31 @@
-{
-    "tipos": [
-        "Medicamentos",
-        "Higiene",
-        "Cosmeticos"
-    ],
-    "produtos": [
-        {
-            "ID": 1,
-            "nome": "lidexor",
-            "quantidade": 3,
-            "tipo": "Medicamentos"
-        },
-        {
-            "ID": 2,
-            "nome": "dipirona",
-            "quantidade": 4,
-            "tipo": "Medicamentos"
-        },
-        {
-            "ID": 3,
-            "nome": "perfume",
-            "quantidade": 6,
-            "tipo": "Cosmeticos"
-        },
-        {
-            "ID": 5,
-            "nome": "teste",
-            "quantidade": 5,
-            "tipo": ""
-        }
-    ]
-}
+[
+    {
+        "ID": 1,
+        "nome": "lidexor",
+        "quantidade": 3,
+        "tipo": "Medicamentos"
+    },
+    {
+        "ID": 2,
+        "nome": "dipirona",
+        "quantidade": 4,
+        "tipo": "Medicamentos"
+    },
+    {
+        "ID": 3,
+        "nome": "perfume",
+        "quantidade": 6,
+        "tipo": "Cosmeticos"
+    },
+    {
+        "ID": 5,
+        "nome": "teste",
+        "quantidade": 5,
+        "tipo": ""
+    },
+    {
+        "ID": 6,
+        "nome": "produtTest",
+        "quantidade": 67
+    }
+]

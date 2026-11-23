@@ -24,6 +24,7 @@ class Sessao {
     public:
 		static void getLogin();
 		static bool getLogado();
+		static int getID();
 		static string cript(string IN,int codecod);
 		int maiorID();		
 };
