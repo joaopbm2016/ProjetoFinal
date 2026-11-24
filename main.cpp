@@ -2,6 +2,7 @@
 #include <string>
 #include "json.hpp"
 #include <fstream>
+#include <limits>
 #include "Sessao.h"
 
 using json = nlohmann::json;
@@ -29,8 +30,15 @@ void userManager()
 		<< "1 - Mostrar seu usuario\n"
 		<< "2 - Mostrar usuarios\n"
 		<< "3 - Deletar usuario\n"
-		<< "4 - Voltar"<<endl;
-		cin>> choice;
+		<< "4 - logout\n"
+		<< "5 - Voltar"<<endl;
+		cin >> choice;
+		if(cin.fail()){
+        cout<< "\n digite apenas numeros!"<<endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		choice = 10;
+    	}
 		switch (choice)
 		{
 			case 1:
@@ -46,16 +54,26 @@ void userManager()
 				cout<<"========================="<<endl;
 				break;
 			case 4:
+				cout<<"========================="<<endl;
+				if(manager.logout())
+				{
+					choice = 5;
+					cout << "logout realizado com sucesso!"<< endl;
+				}else{
+					cout<<"logout não realizado"<< endl;
+				}
+				break;
+			case 5:
 				cout<<"VOLTANDO PARA MENU PRINCIPAL..."<<endl;
 				break;
 			default:
 				cout<<"OPÇÃO INVALIDA!"<<endl;
 				break;
 		}
-	}while(choice!=4);
+	}while(choice!=5);
 }
 
-void productManager()
+void productManagerMenu()
 {
 	if(!Sessao::getLogado())
 	{
@@ -76,6 +94,12 @@ void productManager()
 			<< "3 - Deletar produto\n"
 			<< "4 - Voltar"<<endl;
 		cin>> choice;
+		if(cin.fail()){
+        cout<< "\n digite apenas numeros!"<<endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		choice = 10;
+    	}
 		switch (choice)
 		{
 			case 1:
@@ -112,6 +136,12 @@ int Menu()
 		<< "5 - SAIR"<<endl;
 	int choice;
 	cin>> choice;
+	if(cin.fail()){
+        cout<< "\n digite apenas numeros!"<<endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		choice = 10;
+    }
 	return choice;
 }
 
@@ -140,7 +170,7 @@ int main() {
 			}
 			case 4:
 				cout<<"========================="<<endl;
-				productManager();
+				productManagerMenu();
 				break;	
 
 			case 5:

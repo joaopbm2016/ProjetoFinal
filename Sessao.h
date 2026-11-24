@@ -55,6 +55,7 @@ class UserManager : public Sessao {
 	public:
 		void getUsers();
 		void deleteUser();	
+		bool logout();
 };
 
 class ProductsManager : public Sessao {

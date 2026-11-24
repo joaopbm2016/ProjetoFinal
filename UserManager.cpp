@@ -26,6 +26,13 @@ void UserManager::deleteUser()
     int deleteID=0;
     cout<<"qual usuario deletar?\n*escreva o ID*"<<endl;
     cin>>deleteID;
+    if(cin.fail())
+    {
+        cout<< "\n digite apenas numeros!"<<endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        return;
+    }
     if (deleteID==getID())
     {
         cout<<"\nVOCÊ NÃO PODE DELETAR UM USUARIO QUE ESTA LOGADO!\n"<<endl;
@@ -61,4 +68,21 @@ void UserManager::deleteUser()
 		}
 		arquivo << newusers.dump(4);
 		arquivo.close();
+}
+
+bool UserManager::logout()
+{
+    if(!getLogado())
+    {
+        cout << "VOCÊ NÃO ESTA LOGADO!" << endl;
+        return false;
+    }
+
+    logado = false;
+    setNome("");
+    setUser("");
+    setSenha("");
+    setID(0);
+ 
+    return true;
 }

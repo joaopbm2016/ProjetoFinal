@@ -83,12 +83,35 @@ void ProductsManager::cadastrarProduto()
     cout<<"Digite o nome do produto:"<<endl;
     getline(cin,nomeProduto);
 
+    if(nomeProduto=="")
+    {
+        cout<< "de um nome não vazio ao produto"<< endl;
+        return;
+    }
+
     cout<<"Digite a quantidade do produto:"<<endl;
     cin>>quantProduto;
+    if(cin.fail() || quantProduto<0)
+    {
+        cout<< "\n digite apenas numeros positivos!\n"<<endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		return;
+    }
 
     cout<<"Qual ID usar? (0 para automatico)"<<endl;
     cin>>ID;
-
+    if(cin.fail()){
+        cout<< "\n digite apenas numeros!\n escolhendo ID automático"<<endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		ID = 0;
+    }
+    if(ID<0) 
+    {
+        cout<<" numeros negativos não são aceitos!"<<endl;
+        return;
+    }
     if(ID==0)
     {
         ID=maiorIDProduto()+1;
@@ -126,7 +149,17 @@ void ProductsManager::deleteProduto()
 
     cout<<"Qual produto deletar?\n*escreva o ID*"<<endl;
     cin>>deleteID;
-
+    if(cin.fail()){
+        cout<< "\n digite apenas numeros!"<<endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		return;
+    }
+    if(deleteID<=0) 
+    {
+        cout<<" numeros negativos ou 0 não são aceitos!"<<endl;
+        return;
+    }
     for(auto it = oldprodutos.begin();it != oldprodutos.end();it++)
     {
         if((*it).contains("ID") && (*it)["ID"] == deleteID)

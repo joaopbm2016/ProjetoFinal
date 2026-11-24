@@ -10,5 +10,17 @@
         "nome": "joao",
         "senha": "S2xB",
         "usuario": "jbrum"
+    },
+    {
+        "ID": 4,
+        "nome": "Teste QA",
+        "senha": "H3hB9x",
+        "usuario": "qa_user_duplicate_test"
+    },
+    {
+        "ID": 5,
+        "nome": "4",
+        "senha": "",
+        "usuario": "5"
     }
 ]
