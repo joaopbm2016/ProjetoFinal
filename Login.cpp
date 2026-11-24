@@ -39,14 +39,8 @@ bool Login::loginRegister(string buscaUsuario)
 			setNome(item["nome"]);
 			setUser(item["usuario"]);
 			setSenha(item["senha"]);
-			if (item.contains("ID") && item["ID"].is_number_integer())
-			{
-				setID(item["ID"]);
-			}
-			else
-			{
-				setID(0);
-			}
+			setID(item["ID"]);
+			setMOD(item["MOD"]);
 			return true;
 		}
 	}

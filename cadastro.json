@@ -1,26 +1,23 @@
 [
     {
         "ID": 2,
+        "MOD": false,
         "nome": "maria",
         "senha": "B9xt",
         "usuario": "mari"
     },
     {
         "ID": 3,
+        "MOD": true,
         "nome": "joao",
         "senha": "S2xB",
         "usuario": "jbrum"
     },
     {
         "ID": 4,
-        "nome": "Teste QA",
-        "senha": "H3hB9x",
-        "usuario": "qa_user_duplicate_test"
-    },
-    {
-        "ID": 5,
-        "nome": "4",
-        "senha": "",
-        "usuario": "5"
+        "MOD": false,
+        "nome": "testejr",
+        "senha": "WXOW",
+        "usuario": "test"
     }
 ]

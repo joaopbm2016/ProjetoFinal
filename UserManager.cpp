@@ -17,7 +17,8 @@ void UserManager::getUsers()
         cout<<"======================"<<endl
             <<"nome: "<<item["nome"]<<endl
 		    <<"usuario: "<<item["usuario"]<<endl
-		    <<"ID: "<<item["ID"]<<endl;
+		    <<"ID: "<<item["ID"]<<endl
+            <<"MOD: "<<item["MOD"]<<endl;
     }
 }
 
@@ -85,4 +86,120 @@ bool UserManager::logout()
     setID(0);
  
     return true;
+}
+
+void UserManager::userMOD()
+{
+    int MODID;
+
+    cout<<"qual usuario transformar em moderador?\n*escreva o ID*"<<endl;
+    cin>>MODID;
+    if(cin.fail())
+    {
+        cout<< "\n digite apenas numeros!"<<endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        return;
+    }
+    if (MODID==getID())
+    {
+        cout<<"\nVOCÊ JÁ É UM MODERADOR!\n"<<endl;
+        return;
+    }
+
+    json users = carregarUsuarios();
+    if(!users.is_array())
+    {
+        cout<<"Erro: cadastro.json nao contem uma lista de usuarios."<<endl;
+        return;
+    }
+
+    bool encontrou = false;
+
+    for (auto i = users.begin(); i!= users.end();i++)
+    {
+        if((*i)["ID"]==MODID)
+        {
+            if((*i)["MOD"]==true)
+            {
+                cout<< "ESSE USUÁRIO JÁ É UM MODERADOR!"<<endl;
+                return;
+            }
+            (*i)["MOD"]=true;
+            cout<<"MODERADOR ADICIONADO COM SUCESSO!"<<endl;
+            encontrou = true;
+            break;
+        }
+    }
+    if(!encontrou)
+    {
+        cout<<"ID NÃO ENCONTRADO!"<<endl;
+        return;
+    }
+
+    ofstream arquivo("cadastro.json");
+    if (!arquivo.is_open()) {
+			cout << "Erro ao abrir o arquivo." << endl;
+			return;
+		}
+		arquivo << users.dump(4);
+		arquivo.close();
+}
+
+void UserManager::userDelMOD()
+{
+    int MODID;
+
+    cout<<"qual usuario tirar poder moderador?\n*escreva o ID*"<<endl;
+    cin>>MODID;
+    if(cin.fail())
+    {
+        cout<< "\n digite apenas numeros!"<<endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        return;
+    }
+    if (MODID==getID())
+    {
+        cout<<"\nVOCÊ NÃO PODE TIRAR SEU PRÓPRIO MODERADOR!\n"<<endl;
+        return;
+    }
+
+    json users = carregarUsuarios();
+    if(!users.is_array())
+    {
+        cout<<"Erro: cadastro.json nao contem uma lista de usuarios."<<endl;
+        return;
+    }
+
+    bool encontrou = false;
+
+    for (auto i = users.begin(); i!= users.end();i++)
+    {
+        if((*i)["ID"]==MODID)
+        {
+            if((*i)["MOD"]==false)
+            {
+                cout<< "ESSE USUÁRIO NÃO ERA UM MODERADOR!"<<endl;
+                return;
+            }
+            (*i)["MOD"]=false;
+            cout<<"MODERADOR REMOVIDO COM SUCESSO!"<<endl;
+            encontrou = true;
+            break;
+        }
+    }
+    if(!encontrou)
+    {
+        cout<<"ID NÃO ENCONTRADO!"<<endl;
+        return;
+    }
+
+    ofstream arquivo("cadastro.json");
+    if (!arquivo.is_open()) {
+			cout << "Erro ao abrir o arquivo." << endl;
+			return;
+		}
+		arquivo << users.dump(4);
+		arquivo.close();
 }

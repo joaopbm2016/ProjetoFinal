@@ -24,12 +24,18 @@ void Sessao::getLogin()
 	cout<<"nome: "<<nome<<endl
 		<<"usuario: "<<usuario<<endl
 		<<"ID: "<<ID<<endl
+		<<"MOD: "<<MOD<<endl
 		<<"logado: "<<getLogado()<<endl;
 }
 
 int Sessao::getID()
 {
 	return ID;
+}
+
+bool Sessao::getMOD()
+{
+	return MOD;
 }
 
 void Sessao::setNome(string nomeSet)
@@ -48,6 +54,11 @@ void Sessao::setSenha(string senhaSet)
 void Sessao::setID(int IDSet)
 {
 	ID = IDSet;
+}
+
+void Sessao::setMOD(bool MODSet)
+{
+	MOD=MODSet;
 }
 
 int Sessao::maiorID()//verificar se o ID já esta uso

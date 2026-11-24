@@ -18,6 +18,11 @@ void userManager()
 			<<"VOLTANDO PARA MENU..."<<endl;
 		return;
 	}
+	if(!Sessao::getMOD())
+	{
+		cout<< " VOCÊ NÃO É UM MODERADOR!\nVOLTANDO PARA O MENU..."<<endl;
+		return;
+	}
 
 	UserManager manager;
 
@@ -30,8 +35,10 @@ void userManager()
 		<< "1 - Mostrar seu usuario\n"
 		<< "2 - Mostrar usuarios\n"
 		<< "3 - Deletar usuario\n"
-		<< "4 - logout\n"
-		<< "5 - Voltar"<<endl;
+		<< "4 - Adicionar Moderador\n"
+		<< "5 - Remover Moderador\n"
+		<< "6 - logout\n"
+		<< "7 - Voltar"<<endl;
 		cin >> choice;
 		if(cin.fail()){
         cout<< "\n digite apenas numeros!"<<endl;
@@ -54,23 +61,31 @@ void userManager()
 				cout<<"========================="<<endl;
 				break;
 			case 4:
+				manager.userMOD();
+				cout<<"========================="<<endl;
+				break;
+			case 5:
+				manager.userDelMOD();
+				cout<<"========================="<<endl;
+				break;
+			case 6:
 				cout<<"========================="<<endl;
 				if(manager.logout())
 				{
-					choice = 5;
+					choice = 7;
 					cout << "logout realizado com sucesso!"<< endl;
 				}else{
 					cout<<"logout não realizado"<< endl;
 				}
 				break;
-			case 5:
+			case 7:
 				cout<<"VOLTANDO PARA MENU PRINCIPAL..."<<endl;
 				break;
 			default:
 				cout<<"OPÇÃO INVALIDA!"<<endl;
 				break;
 		}
-	}while(choice!=5);
+	}while(choice!=7);
 }
 
 void productManagerMenu()
@@ -133,7 +148,8 @@ int Menu()
 		<< "2 - LOGIN\n"
 		<< "3 - GERENCIAR USUARIOS\n"
 		<< "4 - GERENCIAR PRODUTOS\n"
-		<< "5 - SAIR"<<endl;
+		<< "5 - LOGOUT\n"
+		<< "6 - SAIR"<<endl;
 	int choice;
 	cin>> choice;
 	if(cin.fail()){
@@ -148,7 +164,7 @@ int Menu()
 int main() {
 	//Sessao usuario;
 	int choice=0;
-	while (choice!=5) {
+	while (choice!=6) {
 		choice = Menu();
 		switch (choice) {
 			case 1: {
@@ -174,6 +190,11 @@ int main() {
 				break;	
 
 			case 5:
+				UserManager logout;
+				cout<<"\nRealizando Logout!"<<endl;
+				logout.logout();
+				break;
+			case 6:
 				cout << "Saindo..." << endl;
 				break;
 			default:

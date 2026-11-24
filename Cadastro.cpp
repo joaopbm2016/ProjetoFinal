@@ -70,7 +70,8 @@ void Cadastro::pushCadastro()
 			{"nome", nomeCadastro},
 		    {"usuario", usuarioCadastro},
 			{"senha", senhaCadastro},
-			{"ID", IDCadastro}
+			{"ID", IDCadastro},
+			{"MOD", false}
 		});
 		ofstream arquivo("cadastro.json");
 		if (!arquivo.is_open()) {

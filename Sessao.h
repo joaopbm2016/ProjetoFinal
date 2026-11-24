@@ -13,6 +13,7 @@ class Sessao {
 		inline static string usuario = "";
         inline static string senha = "" ; // criptografar com hash
 		inline static int ID = 0;
+		inline static bool MOD;
 	protected:	
 		inline static bool logado = false;
         //----------------------------------
@@ -21,10 +22,12 @@ class Sessao {
 		void setUser(string userSet);
 		void setSenha(string senhaSet);
 		void setID(int IDSet);
+		void setMOD(bool MODSet);
     public:
 		static void getLogin();
 		static bool getLogado();
 		static int getID();
+		static bool getMOD();
 		static string cript(string IN,int codecod);
 		int maiorID();		
 };
@@ -56,6 +59,8 @@ class UserManager : public Sessao {
 		void getUsers();
 		void deleteUser();	
 		bool logout();
+		void userMOD();
+		void userDelMOD();
 };
 
 class ProductsManager : public Sessao {
