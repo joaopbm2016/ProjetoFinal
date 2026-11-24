@@ -61,9 +61,10 @@ class ProductsManager : public Sessao {
 
 	public:
 		json carregarProdutos();
+		int maiorIDProduto();
 		void getProducts();
 		void cadastrarProduto();
 		bool verificarProdutCadastro(string Nome,int ID);
-		string showTypes();
+		void deleteProduto();
 
 };

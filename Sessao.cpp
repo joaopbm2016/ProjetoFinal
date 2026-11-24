@@ -58,8 +58,7 @@ int Sessao::maiorID()//verificar se o ID já esta uso
 
 	for (auto i : dados)
 	{
-		if (i.contains("ID") && i["ID"].is_number_integer()
-			&& maiorID < i["ID"].get<int>())
+		if (i.contains("ID") && i["ID"].is_number_integer() && maiorID < i["ID"].get<int>())
 		{
 			maiorID = i["ID"].get<int>();
 		}

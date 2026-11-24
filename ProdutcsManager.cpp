@@ -26,6 +26,21 @@ json ProductsManager::carregarProdutos()
     return produtos;
 };
 
+int ProductsManager::maiorIDProduto()
+{
+    json dados = carregarProdutos();
+
+    int maiorID = 0;
+
+    for(auto i : dados)
+    {
+        if(i.contains("ID") && i["ID"].is_number_integer() && i["ID"]>maiorID)
+        {
+            maiorID = i["ID"].get<int>();
+        }
+    }
+    return maiorID;
+}
 
 void ProductsManager::getProducts()
 {
@@ -74,6 +89,11 @@ void ProductsManager::cadastrarProduto()
     cout<<"Qual ID usar? (0 para automatico)"<<endl;
     cin>>ID;
 
+    if(ID==0)
+    {
+        ID=maiorIDProduto()+1;
+    }
+
     if(verificarProdutCadastro(nomeProduto, ID))
     {
         json newProdutos = carregarProdutos();
@@ -97,3 +117,39 @@ void ProductsManager::cadastrarProduto()
 
     
 };
+
+void ProductsManager::deleteProduto()
+{
+    json oldprodutos = carregarProdutos();
+    bool encontrado=false;
+    int deleteID;
+
+    cout<<"Qual produto deletar?\n*escreva o ID*"<<endl;
+    cin>>deleteID;
+
+    for(auto it = oldprodutos.begin();it != oldprodutos.end();it++)
+    {
+        if((*it).contains("ID") && (*it)["ID"] == deleteID)
+        {
+            oldprodutos.erase(it);
+            encontrado=true;
+            break;
+        }
+    }
+
+    if(!encontrado)
+    {
+        cout<< "ID NÃO ENCONTRADO!"<<endl;
+        return;
+    }
+
+    ofstream arquivo("produtos.json");
+    if(!arquivo.is_open())
+    {
+        cout<<"FALHA AO ABRIR O ARQUIVO!"<<endl;
+        return;
+    }
+    arquivo<< oldprodutos.dump(4);
+    arquivo.close();
+
+}

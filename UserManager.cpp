@@ -39,7 +39,7 @@ void UserManager::deleteUser()
     }
 
     bool encontrou=false;
-    for (auto it = newusers.begin(); it != newusers.end(); ++it)
+    for (auto it = newusers.begin(); it != newusers.end(); it++)
     {
         if((*it).contains("ID") && (*it)["ID"] == deleteID)
         {

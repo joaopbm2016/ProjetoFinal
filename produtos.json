@@ -18,12 +18,6 @@
         "tipo": "Cosmeticos"
     },
     {
-        "ID": 5,
-        "nome": "teste",
-        "quantidade": 5,
-        "tipo": ""
-    },
-    {
         "ID": 6,
         "nome": "produtTest",
         "quantidade": 67

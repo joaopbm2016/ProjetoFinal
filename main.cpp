@@ -42,7 +42,7 @@ void userManager()
 				manager.getUsers();
 				break;
 			case 3:
-			manager.deleteUser();
+				manager.deleteUser();
 				cout<<"========================="<<endl;
 				break;
 			case 4:
@@ -87,7 +87,8 @@ void productManager()
 				cout<<"========================="<<endl;
 				break;
 			case 3:
-				cout<<"Deletar produto"<<endl;// criar deletar
+				cout<<"========================="<<endl;// criar deletar
+				produtmanager.deleteProduto();
 				break;
 			case 4:
 				cout<<"VOLTANDO PARA MENU PRINCIPAL...\n"<<endl;
